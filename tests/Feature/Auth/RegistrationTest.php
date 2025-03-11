@@ -22,4 +22,7 @@ test('new users can register', function () {
 
     assertAuthenticated();
     $response->assertRedirect(route('dashboard', absolute: false));
+
+    $user = \App\Models\User::where('email', 'test@example.com')->first();
+    expect($user->wallet)->not()->toBeNull();
 });
